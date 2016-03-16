@@ -109,6 +109,15 @@
 			name = Chat;
 			sourceTree = "<group>";
 		};
+		884A0F9B1C997E51009C659F /* Interface */ = {
+			isa = PBXGroup;
+			children = (
+				884A0F951C98DA57009C659F /* LaunchScreen.storyboard */,
+				884A0F931C98DA50009C659F /* Main.storyboard */,
+			);
+			name = Interface;
+			sourceTree = "<group>";
+		};
 		888B5E541C98D99F00B36029 = {
 			isa = PBXGroup;
 			children = (
@@ -135,10 +144,9 @@
 			isa = PBXGroup;
 			children = (
 				888B5E601C98D99F00B36029 /* AppDelegate.swift */,
-				884A0F931C98DA50009C659F /* Main.storyboard */,
-				884A0F951C98DA57009C659F /* LaunchScreen.storyboard */,
 				884A0F8B1C98DA16009C659F /* Assets.xcassets */,
 				888B5E6C1C98D99F00B36029 /* Info.plist */,
+				884A0F9B1C997E51009C659F /* Interface */,
 				884A0F971C98DB78009C659F /* View Controllers */,
 			);
 			path = CryptedChat;
@@ -433,7 +441,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
-				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -502,6 +510,7 @@
 			baseConfigurationReference = 7EC80C4C8F960703CE3CE7FE /* Pods-CryptedChat.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				INFOPLIST_FILE = CryptedChat/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.egemenayhan.CryptedChat;
@@ -515,6 +524,7 @@
 			baseConfigurationReference = 49CF328E56402BACBC003FF3 /* Pods-CryptedChat.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				INFOPLIST_FILE = CryptedChat/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.egemenayhan.CryptedChat;

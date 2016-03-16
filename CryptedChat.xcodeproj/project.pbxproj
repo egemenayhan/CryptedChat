@@ -14,6 +14,9 @@
 		884A0F921C98DA35009C659F /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 884A0F8F1C98DA35009C659F /* SignUpViewController.swift */; };
 		884A0F941C98DA50009C659F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 884A0F931C98DA50009C659F /* Main.storyboard */; };
 		884A0F961C98DA57009C659F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 884A0F951C98DA57009C659F /* LaunchScreen.storyboard */; };
+		884A0F9E1C99B4B8009C659F /* ProxyManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 884A0F9D1C99B4B8009C659F /* ProxyManager.swift */; };
+		884A0FA21C99C325009C659F /* ConversationsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 884A0FA11C99C325009C659F /* ConversationsViewController.swift */; };
+		884A0FA41C99E47A009C659F /* Conversation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 884A0FA31C99E47A009C659F /* Conversation.swift */; };
 		888B5E611C98D99F00B36029 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 888B5E601C98D99F00B36029 /* AppDelegate.swift */; };
 		888B5E761C98D99F00B36029 /* CryptedChatTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 888B5E751C98D99F00B36029 /* CryptedChatTests.swift */; };
 		888B5E811C98D9A000B36029 /* CryptedChatUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 888B5E801C98D9A000B36029 /* CryptedChatUITests.swift */; };
@@ -46,6 +49,9 @@
 		884A0F8F1C98DA35009C659F /* SignUpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		884A0F931C98DA50009C659F /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		884A0F951C98DA57009C659F /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
+		884A0F9D1C99B4B8009C659F /* ProxyManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProxyManager.swift; sourceTree = "<group>"; };
+		884A0FA11C99C325009C659F /* ConversationsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConversationsViewController.swift; sourceTree = "<group>"; };
+		884A0FA31C99E47A009C659F /* Conversation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Conversation.swift; sourceTree = "<group>"; };
 		888B5E5D1C98D99F00B36029 /* CryptedChat.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CryptedChat.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		888B5E601C98D99F00B36029 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		888B5E6C1C98D99F00B36029 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -86,6 +92,8 @@
 		884A0F971C98DB78009C659F /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				884A0FA01C99C2F6009C659F /* Conversations */,
+				884A0F9C1C99B47F009C659F /* Proxy */,
 				884A0F981C98DB86009C659F /* Sign In / Sign Up */,
 				884A0F991C98DB9E009C659F /* Chat */,
 			);
@@ -118,6 +126,30 @@
 			name = Interface;
 			sourceTree = "<group>";
 		};
+		884A0F9C1C99B47F009C659F /* Proxy */ = {
+			isa = PBXGroup;
+			children = (
+				884A0F9D1C99B4B8009C659F /* ProxyManager.swift */,
+			);
+			name = Proxy;
+			sourceTree = "<group>";
+		};
+		884A0F9F1C99B5C8009C659F /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				884A0FA31C99E47A009C659F /* Conversation.swift */,
+			);
+			name = Models;
+			sourceTree = "<group>";
+		};
+		884A0FA01C99C2F6009C659F /* Conversations */ = {
+			isa = PBXGroup;
+			children = (
+				884A0FA11C99C325009C659F /* ConversationsViewController.swift */,
+			);
+			name = Conversations;
+			sourceTree = "<group>";
+		};
 		888B5E541C98D99F00B36029 = {
 			isa = PBXGroup;
 			children = (
@@ -143,6 +175,7 @@
 		888B5E5F1C98D99F00B36029 /* CryptedChat */ = {
 			isa = PBXGroup;
 			children = (
+				884A0F9F1C99B5C8009C659F /* Models */,
 				888B5E601C98D99F00B36029 /* AppDelegate.swift */,
 				884A0F8B1C98DA16009C659F /* Assets.xcassets */,
 				888B5E6C1C98D99F00B36029 /* Info.plist */,
@@ -385,6 +418,9 @@
 			files = (
 				884A0F911C98DA35009C659F /* LoginViewController.swift in Sources */,
 				884A0F901C98DA35009C659F /* ChatViewController.swift in Sources */,
+				884A0F9E1C99B4B8009C659F /* ProxyManager.swift in Sources */,
+				884A0FA21C99C325009C659F /* ConversationsViewController.swift in Sources */,
+				884A0FA41C99E47A009C659F /* Conversation.swift in Sources */,
 				888B5E611C98D99F00B36029 /* AppDelegate.swift in Sources */,
 				884A0F921C98DA35009C659F /* SignUpViewController.swift in Sources */,
 			);

@@ -7,10 +7,12 @@
 //
 
 import UIKit
+import Firebase
 
 class SignUpViewController: UIViewController {
 
     @IBOutlet weak var BtnDismiss: UIButton!
+    @IBOutlet weak var TFUsername: UITextField!
     @IBOutlet weak var TFMail: UITextField!
     @IBOutlet weak var TFPass1: UITextField!
     @IBOutlet weak var TFPass2: UITextField!
@@ -30,7 +32,7 @@ class SignUpViewController: UIViewController {
     }
 
     @IBAction func signUpTapped(sender: AnyObject) {
-        if self.TFMail.text == "" || !self.isValidEmail(self.TFMail.text!) || self.TFPass1.text == "" || self.TFPass2.text == "" || self.TFPass1.text?.characters.count < 4 || self.TFPass1.text != self.TFPass2.text {
+        if self.TFUsername.text == "" || self.TFMail.text == "" || !self.isValidEmail(self.TFMail.text!) || self.TFPass1.text == "" || self.TFPass2.text == "" || self.TFPass1.text?.characters.count < 4 || self.TFPass1.text != self.TFPass2.text {
             let alert = UIAlertController(title: "Ooops!", message: "Please check fields, you did something wrong.", preferredStyle: UIAlertControllerStyle.Alert)
             
             alert.addAction(UIAlertAction(title: "Ok", style: .Default, handler: { (action: UIAlertAction!) in
@@ -39,7 +41,30 @@ class SignUpViewController: UIViewController {
             
             presentViewController(alert, animated: true, completion: nil)
         } else {
+            let ref = Firebase(url: "https://cryptedchat.firebaseio.com")
             
+            ref.createUser(self.TFMail.text, password: self.TFPass1.text, withValueCompletionBlock: { (error, response) -> Void in
+                if error == nil {
+                    ref.authUser(self.TFMail.text, password: self.TFPass1.text, withCompletionBlock: { (error, response) -> Void in
+                        if error == nil {
+                            print(response)
+                            let newUser = [
+                                "mail": self.TFMail.text as String!,
+                                "displayName": self.TFUsername.text as String!
+                            ]
+                            
+                            ref.childByAppendingPath("users").childByAppendingPath(response.uid).setValue(newUser)
+                            	
+                            NSUserDefaults.standardUserDefaults().setObject(response.token, forKey: "user_token")
+                            self.dismissViewControllerAnimated(true, completion: nil);
+                        } else {
+                            print(error.description)
+                        }
+                    })
+                } else {
+                    print(error.description)
+                }
+            })
         }
     }
 

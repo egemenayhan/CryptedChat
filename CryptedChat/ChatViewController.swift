@@ -29,14 +29,19 @@ class ChatViewController: JSQMessagesViewController {
     let rootRef = Firebase(url: "https://cryptedchat.firebaseio.com/")
     var messageRef: Firebase!
     
+    var conversation: Conversation!
+    
     var messages = [JSQMessage]()
     var outgoingBubbleImageView: JSQMessagesBubbleImage!
     var incomingBubbleImageView: JSQMessagesBubbleImage!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        title = "CryptedChat"
+        title = self.conversation.title
         setupBubbles()
+        
+        senderId = NSUserDefaults.standardUserDefaults().stringForKey("user_mail")
+        senderDisplayName = "admin"
         
         // No avatars
         collectionView!.collectionViewLayout.incomingAvatarViewSize = CGSizeZero
@@ -109,31 +114,30 @@ class ChatViewController: JSQMessagesViewController {
     override func didPressSendButton(button: UIButton!, withMessageText text: String!, senderId: String!,
         senderDisplayName: String!, date: NSDate!) {
             
-            let itemRef = messageRef.childByAutoId() // 1
-            let messageItem = [ // 2
+            let itemRef = messageRef.childByAutoId()
+            let messageItem = [
                 "text": text,
-                "senderId": senderId
+                "senderMail": senderId,
+                "conversationID": self.conversation.conversationID
             ]
-            itemRef.setValue(messageItem) // 3
+            itemRef.setValue(messageItem)
             
-            // 4
             JSQSystemSoundPlayer.jsq_playMessageSentSound()
             
-            // 5
             finishSendingMessage()
     }
     
     private func observeMessages() {
         // 1
-        let messagesQuery = messageRef.queryLimitedToLast(25)
+        let messagesQuery = messageRef
         // 2
-        messagesQuery.observeEventType(.ChildAdded) { (snapshot: FDataSnapshot!) in
+        messagesQuery.queryOrderedByChild("conversationID").queryEqualToValue(self.conversation.conversationID).observeEventType(.ChildAdded) { (snapshot: FDataSnapshot!) in
             // 3
-            let id = snapshot.value["senderId"] as! String
+            let mail = snapshot.value["senderMail"] as! String
             let text = snapshot.value["text"] as! String
             
             // 4
-            self.addMessage(id, text: text)
+            self.addMessage(mail, text: text)
             // 5
             JSQSystemSoundPlayer.jsq_playMessageReceivedAlert()
             

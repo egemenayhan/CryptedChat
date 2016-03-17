@@ -17,6 +17,7 @@ class ConversationsViewController: UITableViewController {
     var conversations: NSMutableArray!
     var userMail: String!
     var userDisplayName: String!
+    var selectedConversation: Conversation!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -36,9 +37,9 @@ class ConversationsViewController: UITableViewController {
         conversationsRef = ref.childByAppendingPath("conversations")
     }
 
-    override func viewDidAppear(animated: Bool) {
-        super.viewDidAppear(animated)
-        
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        self.conversations.removeAllObjects()
         observeMessages()
     }
     
@@ -60,6 +61,13 @@ class ConversationsViewController: UITableViewController {
         let conv = self.conversations[indexPath.row] as! Conversation
         cell.textLabel?.text = conv.title
         return cell
+    }
+    
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        self.tableView.deselectRowAtIndexPath(indexPath, animated: true)
+        
+        self.selectedConversation = self.conversations[indexPath.row] as! Conversation
+        self.performSegueWithIdentifier("chatSegue", sender: nil)
     }
     
     private func observeMessages() {
@@ -148,19 +156,14 @@ class ConversationsViewController: UITableViewController {
     }
     
     @IBAction func logoutTapped(sender: AnyObject) {
-        //NSUserDefaults.standardUserDefaults().removeObjectForKey("user_token")
+        NSUserDefaults.standardUserDefaults().removeObjectForKey("user_token")
         self.navigationController?.popViewControllerAnimated(true)
     }
-    
-    
-    /*
-    // MARK: - Navigation
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+        if segue.identifier == "chatSegue" {
+            let destinationVC = segue.destinationViewController as! ChatViewController
+            destinationVC.conversation = self.selectedConversation
+        }
     }
-    */
-
 }

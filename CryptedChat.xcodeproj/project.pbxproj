@@ -292,7 +292,7 @@
 				TargetAttributes = {
 					888B5E5C1C98D99F00B36029 = {
 						CreatedOnToolsVersion = 7.2.1;
-						DevelopmentTeam = YDABZ672Z5;
+						DevelopmentTeam = EE65Z2TELX;
 					};
 					888B5E701C98D99F00B36029 = {
 						CreatedOnToolsVersion = 7.2.1;
@@ -552,7 +552,7 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				INFOPLIST_FILE = CryptedChat/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.egemenayhan.CryptedChat;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.egemenayhan.crypted-chat";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = 1;
@@ -569,7 +569,7 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				INFOPLIST_FILE = CryptedChat/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.egemenayhan.CryptedChat;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.egemenayhan.crypted-chat";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = 1;

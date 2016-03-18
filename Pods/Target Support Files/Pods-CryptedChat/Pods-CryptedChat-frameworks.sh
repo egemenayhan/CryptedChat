@@ -87,9 +87,11 @@ if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_framework "Pods-CryptedChat/Firebase.framework"
   install_framework "Pods-CryptedChat/JSQMessagesViewController.framework"
   install_framework "Pods-CryptedChat/JSQSystemSoundPlayer.framework"
+  install_framework "Pods-CryptedChat/MRProgress.framework"
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework "Pods-CryptedChat/Firebase.framework"
   install_framework "Pods-CryptedChat/JSQMessagesViewController.framework"
   install_framework "Pods-CryptedChat/JSQSystemSoundPlayer.framework"
+  install_framework "Pods-CryptedChat/MRProgress.framework"
 fi

@@ -22,12 +22,14 @@
 
 import UIKit
 import Firebase
+import MRProgress
 
 class LoginViewController: UIViewController {
     
     @IBOutlet weak var TFMail: UITextField!
     @IBOutlet weak var TFPass: UITextField!
     var ref: Firebase!
+    var overlay: MRProgressOverlayView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -41,14 +43,38 @@ class LoginViewController: UIViewController {
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         
+        if (self.overlay != nil) {
+            self.overlay.dismiss(false)
+        }
+        
+        self.TFMail.text = ""
+        self.TFPass.text = ""
+        
+        self.view.endEditing(true)
+        
         self.navigationController?.navigationBarHidden = true
         
         let token = NSUserDefaults.standardUserDefaults().stringForKey("user_token")
         if token != nil {
+            self.overlay = MRProgressOverlayView.showOverlayAddedTo(self.view, animated: true)
+            self.overlay.mode = .Indeterminate
+            self.overlay.tintColor = self.view.backgroundColor
+            self.view.addSubview(self.overlay)
+            self.overlay.show(true)
+            
             ref.authWithCustomToken(token, withCompletionBlock: { (error, data) -> Void in
                 if error == nil {
+                    self.overlay.show(false)
+                    self.overlay.mode = .Checkmark
+                    self.overlay.show(true)
+                    
                     self.performSegueWithIdentifier("conversationsSegue", sender: nil)
                 } else {
+                    self.overlay.show(false)
+                    self.overlay.mode = .Cross
+                    self.overlay.titleLabelText = error.localizedDescription
+                    self.overlay.show(true)
+                    
                     print(error.description)
                 }
             })
@@ -65,6 +91,12 @@ class LoginViewController: UIViewController {
             
             presentViewController(alert, animated: true, completion: nil)
         } else {
+            self.overlay = MRProgressOverlayView.showOverlayAddedTo(self.view, animated: true)
+            self.overlay.mode = .Indeterminate
+            self.overlay.tintColor = self.view.backgroundColor
+            self.view.addSubview(self.overlay)
+            self.overlay.show(true)
+            
             ref.authUser(self.TFMail.text, password: self.TFPass.text) { (error: NSError!, data: FAuthData!) -> Void in
                 if error == nil {
                     NSUserDefaults.standardUserDefaults().setObject(data.token, forKey: "user_token")
@@ -72,9 +104,17 @@ class LoginViewController: UIViewController {
                         print(snapshot.value)
                         NSUserDefaults.standardUserDefaults().setObject(snapshot.value["displayName"] ,forKey: "displayName")
                         NSUserDefaults.standardUserDefaults().setObject(snapshot.value["mail"], forKey: "user_mail")
+                        self.overlay.show(false)
+                        self.overlay.mode = .Checkmark
+                        self.overlay.show(true)
+                        
                         self.performSegueWithIdentifier("conversationsSegue", sender: nil)
                     })
                 } else {
+                    self.overlay.show(false)
+                    self.overlay.mode = .Cross
+                    self.overlay.titleLabelText = error.localizedDescription
+                    self.overlay.show(true)
                     print(error.description)
                 }
             }

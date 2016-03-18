@@ -14,10 +14,10 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = 'primary'
-               BlueprintIdentifier = 'C8032AF22E251A1EDBFC9630'
-               BlueprintName = 'Pods-CryptedChat'
+               BlueprintIdentifier = '762F3D7539926B3C56EAB36B'
+               BlueprintName = 'MRProgress'
                ReferencedContainer = 'container:Pods.xcodeproj'
-               BuildableName = 'Pods_CryptedChat.framework'>
+               BuildableName = 'MRProgress.framework'>
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>

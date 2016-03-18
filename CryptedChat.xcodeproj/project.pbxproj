@@ -61,6 +61,7 @@
 		888B5E7C1C98D9A000B36029 /* CryptedChatUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CryptedChatUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		888B5E801C98D9A000B36029 /* CryptedChatUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CryptedChatUITests.swift; sourceTree = "<group>"; };
 		888B5E821C98D9A000B36029 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		88F5F3231C9BE45E0082F4BD /* CryptedChat-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "CryptedChat-Bridging-Header.h"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -175,6 +176,7 @@
 		888B5E5F1C98D99F00B36029 /* CryptedChat */ = {
 			isa = PBXGroup;
 			children = (
+				88F5F3221C9BE4330082F4BD /* Helpers */,
 				884A0F9F1C99B5C8009C659F /* Models */,
 				888B5E601C98D99F00B36029 /* AppDelegate.swift */,
 				884A0F8B1C98DA16009C659F /* Assets.xcassets */,
@@ -201,6 +203,14 @@
 				888B5E821C98D9A000B36029 /* Info.plist */,
 			);
 			path = CryptedChatUITests;
+			sourceTree = "<group>";
+		};
+		88F5F3221C9BE4330082F4BD /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				88F5F3231C9BE45E0082F4BD /* CryptedChat-Bridging-Header.h */,
+			);
+			name = Helpers;
 			sourceTree = "<group>";
 		};
 		9502F7CFE649E8A93801519F /* Pods */ = {
@@ -547,6 +557,7 @@
 			baseConfigurationReference = 7EC80C4C8F960703CE3CE7FE /* Pods-CryptedChat.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
@@ -555,6 +566,8 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.egemenayhan.crypted-chat";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "CryptedChat/CryptedChat-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
@@ -564,6 +577,7 @@
 			baseConfigurationReference = 49CF328E56402BACBC003FF3 /* Pods-CryptedChat.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
@@ -572,6 +586,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.egemenayhan.crypted-chat";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "CryptedChat/CryptedChat-Bridging-Header.h";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;

@@ -8,6 +8,7 @@
 
 import UIKit
 import Firebase
+import MRProgress
 
 class SignUpViewController: UIViewController {
 
@@ -16,6 +17,8 @@ class SignUpViewController: UIViewController {
     @IBOutlet weak var TFMail: UITextField!
     @IBOutlet weak var TFPass1: UITextField!
     @IBOutlet weak var TFPass2: UITextField!
+    
+    var overlay: MRProgressOverlayView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -46,6 +49,12 @@ class SignUpViewController: UIViewController {
         } else {
             let ref = Firebase(url: "https://cryptedchat.firebaseio.com")
             
+            self.overlay = MRProgressOverlayView.showOverlayAddedTo(self.view, animated: true)
+            self.overlay.mode = .Indeterminate
+            self.overlay.tintColor = self.view.backgroundColor
+            self.view.addSubview(self.overlay)
+            self.overlay.show(true)
+            
             ref.createUser(self.TFMail.text, password: self.TFPass1.text, withValueCompletionBlock: { (error, response) -> Void in
                 if error == nil {
                     ref.authUser(self.TFMail.text, password: self.TFPass1.text, withCompletionBlock: { (error, response) -> Void in
@@ -59,12 +68,27 @@ class SignUpViewController: UIViewController {
                             ref.childByAppendingPath("users").childByAppendingPath(response.uid).setValue(newUser)
                             	
                             NSUserDefaults.standardUserDefaults().setObject(response.token, forKey: "user_token")
+                            
+                            self.overlay.show(false)
+                            self.overlay.mode = .Checkmark
+                            self.overlay.show(true)
+                            
                             self.dismissViewControllerAnimated(true, completion: nil);
                         } else {
+                            self.overlay.show(false)
+                            self.overlay.mode = .Cross
+                            self.overlay.titleLabelText = error.localizedDescription
+                            self.overlay.show(true)
+                            
                             print(error.description)
                         }
                     })
                 } else {
+                    self.overlay.show(false)
+                    self.overlay.mode = .Cross
+                    self.overlay.titleLabelText = error.localizedDescription
+                    self.overlay.show(true)
+                    
                     print(error.description)
                 }
             })

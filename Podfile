@@ -8,5 +8,6 @@ pod 'Firebase'
 pod 'JSQMessagesViewController'
 pod 'Fabric'
 pod 'Crashlytics'
+pod 'MRProgress'
 
 end
